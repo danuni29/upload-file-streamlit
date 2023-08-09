@@ -17,7 +17,7 @@ def main():
 
 
 
-        m = folium.Map(location=[37, 127], zoom_start=6.5, min_zoom=5, max_zoom=12, tiles="cartodbpositron")
+        m = folium.Map(location=[37, 127], zoom_start=6.5,tiles="cartodbpositron")
 
 
         for i, row in df.iterrows():
