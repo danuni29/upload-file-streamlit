@@ -9,25 +9,21 @@ def main():
     if uploaded_file is not None:
 
         df = pd.read_csv(uploaded_file,
-                         usecols=['lat', 'lon', 'name', 'gloc'])
+                         usecols=['lat', 'lon', 'name', 'gloc', 'addr_name'])
 
 
 
-        # df.columns = ['lat', 'lon']
 
-
-
-        m = folium.Map(location=[37, 127], zoom_start=6.5,tiles="cartodbpositron")
-
+        m = folium.Map(location=[37, 127], zoom_start=6.5, tiles="cartodbpositron")
 
         for i, row in df.iterrows():
-            iframe = f"이름: <strong>{row['name']}</strong><br>국가격자번호: <strong>{row['gloc']}</strong><br> 위경도: {row['lat']:.4f}, {row['lon']:.4f}"
+            iframe = f"이름: <strong>{row['name']}</strong><br>국가격자번호: <strong>{row['gloc']}</strong><br> 위경도: {row['lat']:.4f}, {row['lon']:.4f}<br> 주소: {row['addr_name']}"
             popup = folium.Popup(iframe, min_width=200, max_width=200)
             folium.Marker(location=[row['lat'], row['lon']], popup=popup).add_to(m)
 
         folium_static(m, width=700, height=650)
 
-
+        
 
 if __name__ == '__main__':
     main()
